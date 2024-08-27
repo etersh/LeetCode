@@ -1,16 +1,13 @@
 class Solution {
 public:
-	bool isPalindrome(int x) {
-		if (x < 0) return false;
-		int temp = x;
-		long int rev = 0;
-
-		while (temp) {
-			int ones = temp % 10;
-			rev = rev * 10 + ones;
-			temp /= 10;
-		}
-
-		return rev == x;
-	}
+    bool isPalindrome(int x) {
+        // 0. convert to string solution
+        string s = to_string(x);
+        int last = s.size() - 1;
+        for (int i = 0; i < s.size(); i++) {
+            if (s[i] != s[last--])
+                return false;
+        }
+        return true;
+    }
 };
