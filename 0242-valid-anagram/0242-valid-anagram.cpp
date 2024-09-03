@@ -5,23 +5,18 @@ public:
         if (s_size != t_size)
             return false;
 
-        unordered_map<char, int> dc;
+        unordered_map<char, int> m1;
+        unordered_map<char, int> m2;
 
         // store letters
         for (int i = 0; i < s_size; i++)
-            dc[s[i]]++;
+            m1[s[i]]++;
+        for (int i = 0; i < t_size; i++)
+            m2[t[i]]++;
 
-        // check
-        for (int i = 0; i < t_size; i++) {
-            if (dc.find(t[i]) == dc.end())
-                return false;
-            else {
-                dc[t[i]]--;
-                if (dc[t[i]] < 0)
-                    return false;
-            }
-        }
+        if (m1 == m2)
+            return true;
 
-        return true;
+        return false;
     }
 };
