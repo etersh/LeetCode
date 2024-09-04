@@ -14,9 +14,9 @@ public:
         // 2. reducing time complexitity
         for (int i = 0; i < nums.size(); i++) {
             int need = target - nums[i];
-            if (find(nums.begin(), nums.end(), need) != nums.end()) {
-                int idx = distance(nums.begin(),
-                                   find(nums.begin(), nums.end(), need));
+            auto found = find(nums.begin(), nums.end(), need);
+            if (found != nums.end()) {
+                int idx = distance(nums.begin(), found);
                 if (idx != i)
                     return {i, idx};
             }
