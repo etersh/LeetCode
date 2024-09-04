@@ -11,15 +11,28 @@ public:
         // }
         // return {};
 
-        // 2. reducing time complexitity
+        // // 2. reducing time complexitity
+        // for (int i = 0; i < nums.size(); i++) {
+        //     int need = target - nums[i];
+        //     auto found = find(nums.begin(), nums.end(), need);
+        //     if (found != nums.end()) {
+        //         int idx = distance(nums.begin(), found);
+        //         if (idx != i)
+        //             return {i, idx};
+        //     }
+        // }
+        // return {};
+
+        // 3. using unordered_map
+        unordered_map<int, int> m;
         for (int i = 0; i < nums.size(); i++) {
             int need = target - nums[i];
-            auto found = find(nums.begin(), nums.end(), need);
-            if (found != nums.end()) {
-                int idx = distance(nums.begin(), found);
-                if (idx != i)
-                    return {i, idx};
+            auto idx = m.find(need);
+            if (idx != m.end()) {
+                if (idx->second != i)
+                    return {i, idx->second};
             }
+            m[nums[i]] = i;
         }
         return {};
     }
