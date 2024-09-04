@@ -1,13 +1,21 @@
 class Solution {
 public:
     bool isPalindrome(int x) {
-        // 0. convert to string solution
+        // 1. to string
         string s = to_string(x);
-        int last = s.size() - 1;
-        for (int i = 0; i < s.size(); i++) {
-            if (s[i] != s[last--])
-                return false;
+        string comp;
+
+        for (int i = s.length() - 1; i >= 0; i--) {
+            comp += s[i];
         }
-        return true;
+
+        if (s == comp)
+            return 1;
+        else
+            return 0;
+
+        // 2. separate units
+
+        
     }
 };
