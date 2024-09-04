@@ -1,14 +1,26 @@
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        int size = nums.size();
+        // // 1. brute force (n2)
+        // for (int i = 0; i < nums.size(); i++) {
+        //     for (int j = i + 1; j < nums.size(); j++) {
+        //         if (nums[i] + nums[j] == target) {
+        //             return {i, j};
+        //         }
+        //     }
+        // }
+        // return {};
 
-        for (int i = 0; i < size; i++) {
-            for (int j = i + 1; j < size; j++)
-                if (nums[i] + nums[j] == target)
-                    return {i, j};
+        // 2. reducing time complexitity
+        for (int i = 0; i < nums.size(); i++) {
+            int need = target - nums[i];
+            if (find(nums.begin(), nums.end(), need) != nums.end()) {
+                int idx = distance(nums.begin(),
+                                   find(nums.begin(), nums.end(), need));
+                if (idx != i)
+                    return {i, idx};
+            }
         }
-        
         return {};
     }
 };
