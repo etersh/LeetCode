@@ -27,11 +27,12 @@ public:
         unordered_map<int, int> m;
         for (int i = 0; i < nums.size(); i++) {
             int need = target - nums[i];
-            auto idx = m.find(need);
-            if (idx != m.end()) {
+            if (m.count(need)) {
+                auto idx = m.find(need);
                 if (idx->second != i)
                     return {i, idx->second};
             }
+
             m[nums[i]] = i;
         }
         return {};
